@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: microservicio-usuarios
+  server:
+    port: 8078
+  datasource:
+    url: jdbc:postgresql://localhost:5432/servicio
+    username: daniel
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+config:
+  balanceador:
+    test: ${BALANCEADOR_TEST:valor_por_defecto}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
